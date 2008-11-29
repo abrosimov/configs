@@ -1,0 +1,27 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! URxvt settings
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+URxvt*font: xft:Monospace:pixelsize=9:antialias=true
+URxvt*geometry: 110x95
+URxvt*perl-ext: tabbed
+URxvt*transparent: true
+URxvt*tintColor: Gray
+URxvt*shading: 30
+URxvt*foreground: Green
+URxvt*fading: 40
+URxvt*fadeColor: purple
+URxvt*saveLines: 10000
+URxvt*termName: xterm
+URxvt*scrollBar: true
+URxvt*scrollTtyOutput: true
+URxvt*visualBell: false
+URxvt*urgentOnBell: false
+! Настройка сочетаний Ctrl(+Shift) со стрелками.
+URxvt*keysym.C-Left: \033[1;5D
+URxvt*keysym.C-Right: \033[1;5C
+URxvt*keysym.C-Up: \033[1;5B
+URxvt*keysym.C-Down: \033[1;5A
+URxvt*keysym.C-S-Left: \033[1;6D
+URxvt*keysym.C-S-Right: \033[1;6C
+URxvt*keysym.C-S-Up: \033[1;6B
+URxvt*keysym.C-S-Down: \033[1;6A

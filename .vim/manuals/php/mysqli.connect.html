@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Open a new connection to the MySQL server</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="mysqli.connect-error.html">mysqli->connect_error</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="mysqli.debug.html">mysqli::debug</a></div>
+ <div class="up"><a href="class.mysqli.html">MySQLi</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="mysqli.connect" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysqli::__construct</h1>
+  <h1 class="refname">mysqli_connect</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">mysqli::__construct</span> -- <span class="refname">mysqli_connect</span> &mdash; <span class="dc-title">Open a new connection to the MySQL server</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <p class="para">Object oriented style (constructor):</p>
+   <div class="constructorsynopsis dc-description">
+     <span class="methodname"><b><b>mysqli::__construct</b></b></span>
+     ([ <span class="methodparam"><span class="type">string</span> <tt class="parameter">$host</tt></span>
+    [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$username</tt></span>
+    [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$passwd</tt></span>
+    [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$dbname</tt></span>
+    [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$port</tt></span>
+    [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$socket</tt></span>
+   ]]]]]] )</div>
+
+  <p class="para rdfs-comment">Procedural style</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="class.mysqli.html" class="type mysqli">mysqli</a></span> <span class="methodname"><b><b>mysqli_connect</b></b></span>
+    ([ <span class="methodparam"><span class="type">string</span> <tt class="parameter">$host</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$username</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$passwd</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$dbname</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$port</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$socket</tt></span>
+  ]]]]]] )</div>
+
+  <p class="para rdfs-comment">
+   Opens a connection to the MySQL Server running on.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">host</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Can be either a host name or an IP address. Passing the <b><tt>NULL</tt></b> value
+       or the string &quot;localhost&quot; to this parameter, the local host is
+       assumed. When possible, pipes will be used instead of the TCP/IP
+       protocol.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">username</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The MySQL user name.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">passwd</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If not provided or <b><tt>NULL</tt></b>, the MySQL server will attempt to authenticate
+       the user against those user records which have no password only. This
+       allows one username to be used with different permissions (depending
+       on if a password as provided or not).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dbname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If provided will specify the default database to be used when
+       performing queries.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">port</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Specifies the port number to attempt to connect to the MySQL server.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">socket</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Specifies the socket or named pipe that should be used.
+      </p>
+      <blockquote><p><b class="note">Note</b>: 
+       
+        Specifying the <i><tt class="parameter">socket</tt></i>
+ parameter will not
+        explicitly determine the type of connection to be used when
+        connecting to the MySQL server. How the connection is made to the
+        MySQL database is determined by the <i><tt class="parameter">host</tt></i>
+
+        parameter.
+       <br />
+      </p></blockquote>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a object which represents the connection to a MySQL Server or
+   <b><tt>FALSE</tt></b> if the connection failed.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <div class="example">
+   <p><b>Example #1 Object oriented style</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"world"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;check&nbsp;connection&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Connect&nbsp;failed:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Host&nbsp;information:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">host_info</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;close&nbsp;connection&nbsp;*/<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+  </div>
+
+  </div>
+  <div class="example">
+   <p><b>Example #2 Procedural style</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqli_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"world"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;check&nbsp;connection&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$link</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Connect&nbsp;failed:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Host&nbsp;information:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_get_host_info</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">/*&nbsp;close&nbsp;connection&nbsp;*/<br /></span><span style="color: #0000BB">mysqli_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <p class="para">The above example will output:</p>
+  <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Host information: Localhost via UNIX socket
+</pre></div>
+  </pre></div>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Error &quot;Can&#039;t create TCP/IP socket (10106)&quot; usually means that the <a href="ini.core.html#ini.variables-order" class="link">variables_order</a> configure directive
+    doesn&#039;t contain character <i>E</i>. On Windows, if the
+    environment is not copied the <i>SYSTEMROOT</i> environment
+    variable won&#039;t be available and PHP will have problems loading Winsock.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="mysqli.connect-error.html">mysqli->connect_error</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="mysqli.debug.html">mysqli::debug</a></div>
+ <div class="up"><a href="class.mysqli.html">MySQLi</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

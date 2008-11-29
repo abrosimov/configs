@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Runtime Configuration</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="expect.installation.html">Installation</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="expect.resources.html">Resource Types</a></div>
+ <div class="up"><a href="expect.setup.html">Installing/Configuring</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="expect.configuration" class="section">
+ <h2 class="title">Runtime Configuration</h2>
+ <p class="simpara">
+The behaviour of these functions is affected by settings in <var class="filename">php.ini</var>.
+</p>
+ <p class="para">
+  In order to configure expect extension, there are configuration options
+  in the <a href="configuration.html#configuration.file" class="link">configuration file</a> <var class="filename">php.ini</var>.
+  <table border="5">
+   <caption><b>Expect Configure Options</b></caption>
+   <colgroup>
+
+    <thead valign="middle">
+     <tr valign="middle">
+      <th colspan="1">Name</th>
+      <th colspan="1">Default</th>
+      <th colspan="1">Changeable</th>
+      <th colspan="1">Changelog</th>
+     </tr>
+
+    </thead>
+
+    <tbody valign="middle" class="tbody">
+     <tr valign="middle">
+      <td colspan="1" rowspan="1" align="left">expect.timeout</td>
+      <td colspan="1" rowspan="1" align="left">&quot;10&quot;</td>
+      <td colspan="1" rowspan="1" align="left">PHP_INI_ALL</td>
+      <td class="empty">&nbsp;</td>
+     </tr>
+
+     <tr valign="middle">
+      <td colspan="1" rowspan="1" align="left">expect.loguser</td>
+      <td colspan="1" rowspan="1" align="left">&quot;1&quot;</td>
+      <td colspan="1" rowspan="1" align="left">PHP_INI_ALL</td>
+      <td class="empty">&nbsp;</td>
+     </tr>
+
+     <tr valign="middle">
+      <td colspan="1" rowspan="1" align="left">expect.logfile</td>
+      <td colspan="1" rowspan="1" align="left">&quot;&quot;</td>
+      <td colspan="1" rowspan="1" align="left">PHP_INI_ALL</td>
+      <td class="empty">&nbsp;</td>
+     </tr>
+
+    </tbody>
+   </colgroup>
+
+  </table>
+
+  For further details and definitions of the 
+PHP_INI_* constants, see the <a href="ini.html" class="xref">php.ini directives</a>.
+ </p>
+ 
+ <p class="para">Here&#039;s a short explanation of
+the configuration directives.</p>
+ 
+ <p class="para">
+  <dl>
+
+   <dt id="ini.expect.timeout">
+    <span class="term">
+     <i><tt class="parameter">expect.timeout</tt></i>
+
+     <a href="language.types.integer.html" class="type integer">integer</a>
+    </span>
+
+    <dd>
+
+     <p class="para">
+      The timeout period for waiting for the data, when using the
+      <a href="function.expect-expectl.html" class="function">expect_expectl()</a> function.
+     </p>
+     <p class="para">
+      A value of &quot;-1&quot; disables a timeout from occurring.
+     </p>
+     <blockquote><p><b class="note">Note</b>: 
+      
+       A value of &quot;0&quot; causes the <a href="function.expect-expectl.html" class="function">expect_expectl()</a>
+       function to return immediately.
+      <br />
+     </p></blockquote>
+    </dd>
+
+   </dt>
+
+
+   <dt id="ini.expect.loguser">
+    <span class="term">
+     <i><tt class="parameter">expect.loguser</tt></i>
+
+     <a href="language.types.boolean.html" class="type boolean">boolean</a>
+    </span>
+
+    <dd>
+
+     <p class="para">
+      Whether expect should send any output from the spawned process to stdout.
+      Since interactive programs typically echo their input, this usually suffices
+      to show both sides of the conversation.
+     </p>
+    </dd>
+
+   </dt>
+
+
+   <dt id="ini.expect.logfile">
+    <span class="term">
+     <i><tt class="parameter">expect.logfile</tt></i>
+
+     <a href="language.types.string.html" class="type string">string</a>
+    </span>
+
+    <dd>
+
+     <p class="para">
+      Name of the file, where the output from the spawned process will be
+      written. If this file doesn&#039;t exist, it will be created.
+     </p>
+     <blockquote><p><b class="note">Note</b>: 
+      
+       If this configuration is not empty, the output is written regardless of
+       the value of <a href="expect.configuration.html#ini.expect.loguser" class="link">expect.loguser</a>.
+      <br />
+     </p></blockquote>
+    </dd>
+
+   </dt>
+
+
+  </dl>
+
+ </p>
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="expect.installation.html">Installation</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="expect.resources.html">Resource Types</a></div>
+ <div class="up"><a href="expect.setup.html">Installing/Configuring</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

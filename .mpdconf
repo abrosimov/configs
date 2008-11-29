@@ -1,0 +1,24 @@
+music_directory "/mnt/user_space/Music/"
+playlist_directory "~/.mpd_music/"
+db_file "~/.mpd_music/music.db"
+log_file "~/.mpd_music/mpd.log"
+error_file "~/.mpd_music/errors.log"
+pid_file "~/.mpd_music/pid"
+state_file "~/.mpd_music/state"
+user "fally"
+bind_to_address "localhost"
+port "6600"
+
+audio_output {
+    type "alsa"
+    name "My ALSA Device"
+    device "hw:0,0" # optional
+    format "44100:16:2" # optional
+}
+
+mixer_type "alsa"
+mixer_device "default"
+mixer_control "PCM"
+filesystem_charset "UTF-8"
+id3v1_encoding "UTF-8"
+metadata_to_use "artist,album,title,track,name"

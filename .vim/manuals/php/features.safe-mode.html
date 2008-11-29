@@ -1,0 +1,482 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Safe Mode</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="features.persistent-connections.html">Persistent Database Connections</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="features.safe-mode.functions.html">Functions restricted/disabled by safe mode</a></div>
+ <div class="up"><a href="features.html">Features</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div>
+  <h1>Safe Mode</h1>
+<h2>Table of Contents</h2><ul class="chunklist chunklist_chapter"><li><a href="features.safe-mode.functions.html">Functions restricted/disabled by safe mode</a></li></ul>
+
+
+  <p class="para">
+   The PHP safe mode is an attempt to solve the shared-server security
+   problem. It is architecturally incorrect to try to solve this
+   problem at the PHP level, but since the alternatives at the web
+   server and OS levels aren&#039;t very realistic, many people,
+   especially ISP&#039;s, use safe mode for now. 
+  </p>
+  <div class="warning"><b class="warning">Warning</b>
+   <p class="para">
+    Safe Mode was removed in PHP 6.0.0.
+   </p>
+  </div>
+
+  <div id="ini.sect.safe-mode" class="sect1">
+   <h2 class="title">Security and Safe Mode</h2>
+   <p class="para">
+    <table border="5">
+     <caption><b>Security and Safe Mode Configuration Directives</b></caption>
+     <colgroup>
+
+      <thead valign="middle">
+       <tr valign="middle">
+        <th colspan="1">Name</th>
+        <th colspan="1">Default</th>
+        <th colspan="1">Changeable</th>
+        <th colspan="1">Changelog</th>
+       </tr>
+
+      </thead>
+
+      <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">safe_mode</td>
+       <td colspan="1" rowspan="1" align="left">&quot;0&quot;</td>
+       <td colspan="1" rowspan="1" align="left">PHP_INI_SYSTEM</td>
+       <td colspan="1" rowspan="1" align="left">Removed in PHP 6.0.0.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">safe_mode_gid</td>
+       <td colspan="1" rowspan="1" align="left">&quot;0&quot;</td>
+       <td colspan="1" rowspan="1" align="left">PHP_INI_SYSTEM</td>
+       <td colspan="1" rowspan="1" align="left">Available since PHP 4.1.0. Removed in PHP 6.0.0.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">safe_mode_include_dir</td>
+       <td colspan="1" rowspan="1" align="left">NULL</td>
+       <td colspan="1" rowspan="1" align="left">PHP_INI_SYSTEM</td>
+       <td colspan="1" rowspan="1" align="left">Available since PHP 4.1.0. Removed in PHP 6.0.0.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">safe_mode_exec_dir</td>
+       <td colspan="1" rowspan="1" align="left">&quot;&quot;</td>
+       <td colspan="1" rowspan="1" align="left">PHP_INI_SYSTEM</td>
+       <td colspan="1" rowspan="1" align="left">Removed in PHP 6.0.0.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">safe_mode_allowed_env_vars</td>
+       <td colspan="1" rowspan="1" align="left">&quot;PHP_&quot;</td>
+       <td colspan="1" rowspan="1" align="left">PHP_INI_SYSTEM</td>
+       <td colspan="1" rowspan="1" align="left">Removed in PHP 6.0.0.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">safe_mode_protected_env_vars</td>
+       <td colspan="1" rowspan="1" align="left">&quot;LD_LIBRARY_PATH&quot;</td>
+       <td colspan="1" rowspan="1" align="left">PHP_INI_SYSTEM</td>
+       <td colspan="1" rowspan="1" align="left">Removed in PHP 6.0.0.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">open_basedir</td>
+       <td colspan="1" rowspan="1" align="left">NULL</td>
+       <td colspan="1" rowspan="1" align="left">PHP_INI_ALL</td>
+       <td colspan="1" rowspan="1" align="left">PHP_INI_SYSTEM in PHP &lt; 6.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">disable_functions</td>
+       <td colspan="1" rowspan="1" align="left">&quot;&quot;</td>
+       <td colspan="1" rowspan="1" align="left"><var class="filename">php.ini</var> only</td>
+       <td colspan="1" rowspan="1" align="left">Available since PHP 4.0.1.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">disable_classes</td>
+       <td colspan="1" rowspan="1" align="left">&quot;&quot;</td>
+       <td colspan="1" rowspan="1" align="left"><var class="filename">php.ini</var> only</td>
+       <td colspan="1" rowspan="1" align="left">Available since PHP 4.3.2.</td>
+      </tr>
+
+      </tbody>
+     </colgroup>
+
+    </table>
+
+    For further details and definition of the PHP_INI_* constants see
+    <a href="function.ini-set.html" class="function">ini_set()</a>.
+   </p>
+   
+   <p class="para">Here&#039;s a short explanation of
+the configuration directives.</p>
+   
+   <p class="para">
+    <dl>
+
+     <dt id="ini.safe-mode">
+      <span class="term">
+       <i><tt class="parameter">safe_mode</tt></i>
+
+       <a href="language.types.boolean.html" class="type boolean">boolean</a>
+      </span>
+
+      <dd>
+
+       <p class="para">
+        Whether to enable PHP&#039;s safe mode.
+       </p>
+      </dd>
+
+     </dt>
+
+     <dt id="ini.safe-mode-gid">
+      <span class="term">
+       <i><tt class="parameter">safe_mode_gid</tt></i>
+
+       <a href="language.types.boolean.html" class="type boolean">boolean</a>
+      </span>
+
+      <dd>
+
+       <p class="para">
+        By default, Safe Mode does a UID compare check when
+        opening files. If you want to relax this to a GID compare,
+        then turn on safe_mode_gid.
+        Whether to use <i>UID</i> (<b><tt>FALSE</tt></b>) or
+        <i>GID</i> (<b><tt>TRUE</tt></b>) checking upon file
+        access.
+       </p>
+      </dd>
+
+     </dt>
+
+     <dt id="ini.safe-mode-include-dir">
+      <span class="term">
+       <i><tt class="parameter">safe_mode_include_dir</tt></i>
+
+       <a href="language.types.string.html" class="type string">string</a>
+      </span>
+
+      <dd>
+
+       <p class="para">
+        <i>UID</i>/<i>GID</i> checks are bypassed when
+        including files from this directory and its subdirectories (directory
+        must also be in <a href="ini.core.html#ini.include-path" class="link">include_path</a>
+        or full path must including).
+       </p>
+       <span class="simpara">
+        As of PHP 4.2.0, this directive can take a colon (semi-colon on
+        Windows) separated path in a fashion similar to the
+        <a href="ini.core.html#ini.include-path" class="link">include_path</a> directive,
+        rather than just a single directory.
+       </span>
+       <span class="simpara">
+        The restriction specified is actually a prefix, not a directory name. 
+        This means that &quot;safe_mode_include_dir = /dir/incl&quot; also allows
+        access to &quot;/dir/include&quot; and &quot;/dir/incls&quot; if they exist.  When you 
+        want to restrict access to only the specified directory, end with a 
+        slash. For example: &quot;safe_mode_include_dir = /dir/incl/&quot;
+       </span>
+       <span class="simpara">
+        If the value of this directive is empty, no files with different
+        <i>UID</i>/<i>GID</i> can be included in
+        PHP 4.2.3 and as of PHP 4.3.3. In earlier versions, all files could be
+        included.
+       </span>
+      </dd>
+
+     </dt>
+
+     <dt id="ini.safe-mode-exec-dir">
+      <span class="term">
+       <i><tt class="parameter">safe_mode_exec_dir</tt></i>
+
+       <a href="language.types.string.html" class="type string">string</a>
+      </span>
+
+      <dd>
+
+       <p class="para">
+        If PHP is used in safe mode, <a href="function.system.html" class="function">system()</a> and the other
+        <a href="ref.exec.html" class="link">functions executing system programs</a>
+        refuse to start programs that are not in this directory.
+        You have to use <i>/</i> as directory separator on all
+        environments including Windows.
+       </p>
+      </dd>
+
+     </dt>
+
+     <dt id="ini.safe-mode-allowed-env-vars">
+      <span class="term">
+       <i><tt class="parameter">safe_mode_allowed_env_vars</tt></i>
+
+       <a href="language.types.string.html" class="type string">string</a>
+      </span>
+
+      <dd>
+
+       <p class="para">
+        Setting certain environment variables may be a potential security breach.
+        This directive contains a comma-delimited list of prefixes. In Safe Mode,
+        the user may only alter environment variables whose names begin with the
+        prefixes supplied here. By default, users will only be able to set
+        environment variables that begin with PHP_ (e.g. PHP_FOO=BAR).
+       </p>
+       <blockquote><p><b class="note">Note</b>: 
+        
+         If this directive is empty, PHP will let the user modify ANY
+         environment variable!
+        <br />
+       </p></blockquote>
+      </dd>
+
+     </dt>
+
+     <dt id="ini.safe-mode-protected-env-vars">
+      <span class="term">
+       <i><tt class="parameter">safe_mode_protected_env_vars</tt></i>
+
+       <a href="language.types.string.html" class="type string">string</a>
+      </span>
+
+      <dd>
+
+       <p class="para">
+        This directive contains a comma-delimited list of environment
+        variables that the end user won&#039;t be able to change using
+        <a href="function.putenv.html" class="function">putenv()</a>. These variables will be protected
+        even if safe_mode_allowed_env_vars is set to allow to change them.
+       </p>
+      </dd>
+
+     </dt>
+
+     <dt id="ini.open-basedir">
+      <span class="term">
+       <i><tt class="parameter">open_basedir</tt></i>
+
+       <a href="language.types.string.html" class="type string">string</a>
+      </span>
+
+      <dd>
+
+       <p class="para">
+        Limit the files that can be opened by PHP to the specified
+        directory-tree, including the file itself.  This directive 
+        is <em class="emphasis">NOT</em> affected by whether Safe Mode is 
+        turned On or Off.
+       </p>
+       <p class="para">
+        When a script tries to open a file with, for example,
+        <a href="function.fopen.html" class="function">fopen()</a> or <a href="function.gzopen.html" class="function">gzopen()</a>,
+        the location of the file is checked. When the file is outside the
+        specified directory-tree, PHP will refuse to open it. All symbolic
+        links are resolved, so it&#039;s not possible to avoid this restriction
+        with a symlink. If the file doesn&#039;t exist then the symlink couldn&#039;t be
+        resolved and the filename is compared to (a resolved)
+        <i><tt class="parameter">open_basedir</tt></i>
+.
+       </p>
+       <p class="para">
+        The special value <code class="systemitem systemitem">.</code>
+
+        indicates that the working directory of the script will be used as the
+        base-directory. This is, however, a little dangerous as the working directory
+        of the script can easily be changed with <a href="function.chdir.html" class="function">chdir()</a>.
+       </p>
+       <p class="para">
+        In <var class="filename">httpd.conf</var>, open_basedir can be turned off
+        (e.g. for some virtual hosts)
+        <a href="configuration.changes.html#configuration.changes.apache" class="link">the same way</a> as
+        any other configuration directive with &quot;php_admin_value open_basedir
+        none&quot;.
+       </p>
+       <p class="para">
+        Under Windows, separate the directories with a semicolon. On all
+        other systems, separate the directories with a colon. As an Apache
+        module, open_basedir paths from parent directories are now
+        automatically inherited.
+       </p>
+       <p class="para">
+         The restriction specified with open_basedir is actually a
+         prefix, not a directory name.  This means that &quot;open_basedir =
+         /dir/incl&quot; also allows access to &quot;/dir/include&quot; and
+         &quot;/dir/incls&quot; if they exist. When you want to restrict access
+         to only the specified directory, end with a slash. For example:
+         &quot;open_basedir = /dir/incl/&quot;
+       </p>
+       <p class="para">
+        The default is to allow all files to be opened.
+       </p>
+      </dd>
+
+     </dt>
+
+     <dt id="ini.disable-functions">
+      <span class="term">
+       <i><tt class="parameter">disable_functions</tt></i>
+
+       <a href="language.types.string.html" class="type string">string</a>
+      </span>
+
+      <dd>
+
+       <span class="simpara">
+        This directive allows you to disable certain functions for 
+        <a href="security.html" class="link">security</a> reasons. It takes 
+        on a comma-delimited list of function names. disable_functions
+        is not affected by <a href="features.safe-mode.html#ini.safe-mode" class="link">Safe Mode</a>.
+       </span>
+       <span class="simpara">
+        This directive must be set in <var class="filename">php.ini</var> For example, you 
+        cannot set this in <var class="filename">httpd.conf</var>.
+       </span>
+      </dd>
+
+     </dt>
+
+     <dt id="ini.disable-classes">
+      <span class="term">
+       <i><tt class="parameter">disable_classes</tt></i>
+
+       <a href="language.types.string.html" class="type string">string</a>
+      </span>
+
+      <dd>
+
+       <span class="simpara">
+        This directive allows you to disable certain classes for
+        <a href="security.html" class="link">security</a> reasons.  It takes
+        on a comma-delimited list of class names.  disable_classes
+        is not affected by <a href="features.safe-mode.html#ini.safe-mode" class="link">Safe Mode</a>.
+       </span>
+       <span class="simpara">
+        This directive must be set in <var class="filename">php.ini</var>  For example, you
+        cannot set this in <var class="filename">httpd.conf</var>.
+       </span>
+       <blockquote><p><b class="note">Note</b>: 
+        <b>Availability note</b><br />
+        <span class="simpara">
+         This directive became available in PHP 4.3.2
+        </span>
+       </p></blockquote>
+      </dd>
+
+     </dt>
+
+    </dl>
+
+   </p>
+   <p class="para">
+    See also: <a href="ini.core.html#ini.register-globals" class="link">register_globals</a>,
+    <a href="errorfunc.configuration.html#ini.display-errors" class="link">display_errors</a>, and
+    <a href="errorfunc.configuration.html#ini.log-errors" class="link">log_errors</a>.
+   </p>
+
+  <p class="para">
+   When <a href="features.safe-mode.html#ini.safe-mode" class="link">safe_mode</a> is on, PHP checks to see 
+   if the owner of the current script matches the owner of the file to be 
+   operated on by a file function or its directory. For example: 
+   <div class="example-contents">
+<div class="cdata"><pre>
+-rw-rw-r--    1 rasmus   rasmus       33 Jul  1 19:20 script.php 
+-rw-r--r--    1 root     root       1116 May 26 18:01 /etc/passwd 
+</pre></div>
+   </div>
+
+   Running script.php:
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;readfile</span><span style="color: #007700">(</span><span style="color: #DD0000">'/etc/passwd'</span><span style="color: #007700">);&nbsp;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   results in this error when safe mode is enabled: 
+   <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Warning: SAFE MODE Restriction in effect. The script whose uid is 500 is not 
+allowed to access /etc/passwd owned by uid 0 in /docroot/script.php on line 2
+</pre></div>
+   </pre></div>
+  </p>
+  <p class="para">
+   However, there may be environments where a strict <i>UID</i>
+   check is not appropriate and a relaxed <i>GID</i> check is
+   sufficient.  This is supported by means of the <a href="features.safe-mode.html#ini.safe-mode-gid" class="link">safe_mode_gid</a> switch. Setting it to
+   <i>On</i> performs the relaxed <i>GID</i> checking,
+   setting it to <i>Off</i> (the default) performs
+   <i>UID</i> checking.
+  </p>
+  <p class="para">
+   If instead of <a href="features.safe-mode.html#ini.safe-mode" class="link">safe_mode</a>, you set an 
+   <a href="features.safe-mode.html#ini.open-basedir" class="link">open_basedir</a> directory then all
+   file operations will be limited to files under the specified directory.
+   For example (Apache <var class="filename">httpd.conf</var> example): 
+   <div class="example-contents">
+<div class="cdata"><pre>
+&lt;Directory /docroot&gt;
+  php_admin_value open_basedir /docroot 
+&lt;/Directory&gt;
+</pre></div>
+   </div>
+
+   If you run the same script.php with this
+   <a href="features.safe-mode.html#ini.open-basedir" class="link">open_basedir</a> setting
+   then this is the result: 
+   <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Warning: open_basedir restriction in effect. File is in wrong directory in 
+/docroot/script.php on line 2 
+</pre></div>
+   </pre></div>
+  </p>
+  <p class="para">
+   You can also disable individual functions. Note that the
+   <a href="features.safe-mode.html#ini.disable-functions" class="link">disable_functions</a>
+   directive can not be used outside of the <var class="filename">php.ini</var> file which means that
+   you cannot disable functions on a per-virtualhost or per-directory basis
+   in your <var class="filename">httpd.conf</var> file.
+   If we add this to our <var class="filename">php.ini</var> file: 
+   <div class="example-contents">
+<div class="cdata"><pre>
+disable_functions = readfile,system  
+</pre></div>
+   </div>
+
+   Then we get this output: 
+   <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Warning: readfile() has been disabled for security reasons in 
+/docroot/script.php on line 2 
+</pre></div>
+   </pre></div>
+  </p>
+  <div class="warning"><b class="warning">Warning</b>
+   <p class="para">
+    These PHP restrictions are not valid in executed binaries, of course.
+   </p>
+  </div>
+ </div>
+
+  
+
+ </div>
+<hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="features.persistent-connections.html">Persistent Database Connections</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="features.safe-mode.functions.html">Functions restricted/disabled by safe mode</a></div>
+ <div class="up"><a href="features.html">Features</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

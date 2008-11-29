@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Runtime Configuration</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="filesystem.installation.html">Installation</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="filesystem.resources.html">Resource Types</a></div>
+ <div class="up"><a href="filesystem.setup.html">Installing/Configuring</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="filesystem.configuration" class="section">
+ <h2 class="title">Runtime Configuration</h2>
+ <p class="simpara">
+The behaviour of these functions is affected by settings in <var class="filename">php.ini</var>.
+</p>
+ <p class="para">
+  <table border="5">
+   <caption><b>Filesystem and Streams Configuration Options</b></caption>
+   <colgroup>
+
+    <thead valign="middle">
+     <tr valign="middle">
+      <th colspan="1">Name</th>
+      <th colspan="1">Default</th>
+      <th colspan="1">Changeable</th>
+      <th colspan="1">Changelog</th>
+     </tr>
+
+    </thead>
+
+    <tbody valign="middle" class="tbody">
+     <tr valign="middle">
+      <td colspan="1" rowspan="1" align="left">allow_url_fopen</td>
+      <td colspan="1" rowspan="1" align="left">&quot;1&quot;</td>
+      <td colspan="1" rowspan="1" align="left">PHP_INI_ALL</td>
+      <td colspan="1" rowspan="1" align="left">PHP_INI_ALL in PHP &lt;= 4.3.4. PHP_INI_SYSTEM in PHP &lt; 6. Available since PHP 4.0.4.</td>
+     </tr>
+
+     <tr valign="middle">
+      <td colspan="1" rowspan="1" align="left">allow_url_include</td>
+      <td colspan="1" rowspan="1" align="left">&quot;0&quot;</td>
+      <td colspan="1" rowspan="1" align="left">PHP_INI_ALL</td>
+      <td colspan="1" rowspan="1" align="left">PHP_INI_SYSTEM in PHP 5. Available since PHP 5.2.0.</td>
+     </tr>
+
+     <tr valign="middle">
+      <td colspan="1" rowspan="1" align="left">user_agent</td>
+      <td colspan="1" rowspan="1" align="left">NULL</td>
+      <td colspan="1" rowspan="1" align="left">PHP_INI_ALL</td>
+      <td colspan="1" rowspan="1" align="left">Available since PHP 4.3.0.</td>
+     </tr>
+
+     <tr valign="middle">
+      <td colspan="1" rowspan="1" align="left">default_socket_timeout</td>
+      <td colspan="1" rowspan="1" align="left">&quot;60&quot;</td>
+      <td colspan="1" rowspan="1" align="left">PHP_INI_ALL</td>
+      <td colspan="1" rowspan="1" align="left">Available since PHP 4.3.0.</td>
+    </tr>
+
+     <tr valign="middle">
+      <td colspan="1" rowspan="1" align="left">from</td>
+      <td colspan="1" rowspan="1" align="left">&quot;&quot;</td>
+      <td colspan="1" rowspan="1" align="left">PHP_INI_ALL</td>
+      <td class="empty">&nbsp;</td>
+     </tr>
+
+     <tr valign="middle">
+      <td colspan="1" rowspan="1" align="left">auto_detect_line_endings</td>
+      <td colspan="1" rowspan="1" align="left">&quot;0&quot;</td>
+      <td colspan="1" rowspan="1" align="left">PHP_INI_ALL</td>
+      <td colspan="1" rowspan="1" align="left">Available since PHP 4.3.0.</td>
+     </tr>
+
+    </tbody>
+   </colgroup>
+
+  </table>
+
+ </p>
+ 
+ <p class="para">Here&#039;s a short explanation of
+the configuration directives.</p>
+ 
+ <p class="para">
+  <dl>
+
+   <dt id="ini.allow-url-fopen">
+    <span class="term">
+     <i><tt class="parameter">allow_url_fopen</tt></i>
+
+     <a href="language.types.boolean.html" class="type boolean">boolean</a>
+    </span>
+
+    <dd>
+
+     <p class="para">
+      This option enables the URL-aware fopen wrappers that enable 
+      accessing URL object like files. Default wrappers are provided for 
+      the access of <a href="features.remote-files.html" class="link">remote files</a>
+      using the ftp or http protocol, some extensions like
+      <a href="ref.zlib.html" class="link">zlib</a> may register additional
+      wrappers. 
+     </p>
+     <blockquote><p><b class="note">Note</b>: 
+      
+       This setting can only be set in php.ini due to security reasons.
+      <br />
+     </p></blockquote>
+     <blockquote><p><b class="note">Note</b>: 
+      
+       This option was introduced immediately after the release of version 
+       4.0.3. For versions up to and including 4.0.3 you can only disable this 
+       feature at compile time by using the configuration switch 
+       <a href="configure.html#configure.disable-url-fopen-wrapper" class="link"><i><tt class="parameter">
+       --disable-url-fopen-wrapper</tt></i>
+</a>.
+      <br />
+     </p></blockquote>
+     <div class="warning"><b class="warning">Warning</b>
+      <p class="para"> 
+       On Windows versions prior to PHP 4.3.0, the following functions do not
+       support remote file accessing: <b>include()</b>,
+       <b>include_once()</b>, <b>require()</b>,
+       <b>require_once()</b> and the imagecreatefromXXX
+       functions in the <a href="ref.image.html" class="xref">GD Functions</a> extension.
+      </p>
+     </div>
+    </dd>
+
+   </dt>
+
+
+   <dt id="ini.allow-url-include">
+    <span class="term">
+     <i><tt class="parameter">allow_url_include</tt></i>
+
+     <a href="language.types.boolean.html" class="type boolean">boolean</a>
+    </span>
+
+    <dd>
+
+     <p class="para">
+      This option allows the use of URL-aware fopen wrappers with the following 
+      functions: <b>include()</b>, <b>include_once()</b>, 
+      <b>require()</b>, <b>require_once()</b>.
+     </p>
+     <blockquote><p><b class="note">Note</b>: 
+      
+       This setting requires allow_url_fopen to be on. 
+      <br />
+     </p></blockquote>
+    </dd>
+
+   </dt>
+
+
+   <dt id="ini.user-agent">
+    <span class="term">
+     <i><tt class="parameter">user_agent</tt></i>
+
+     <a href="language.types.string.html" class="type string">string</a>
+    </span>
+
+    <dd>
+
+     <p class="para">
+      Define the user agent for PHP to send.
+     </p>
+    </dd>
+
+   </dt>
+
+
+   <dt id="ini.default-socket-timeout">
+    <span class="term">
+     <i><tt class="parameter">default_socket_timeout</tt></i>
+
+     <a href="language.types.integer.html" class="type integer">integer</a>
+    </span>
+
+    <dd>
+
+     <p class="para">
+      Default timeout (in seconds) for socket based streams.
+     </p>
+     <blockquote><p><b class="note">Note</b>: 
+      <span class="simpara">
+       This configuration option was introduced in PHP 4.3.0
+      </span>
+     </p></blockquote>
+    </dd>
+
+   </dt>
+
+
+   <dt id="ini.from">
+    <span class="term">
+     <i><tt class="parameter">from</tt></i>
+
+     <a href="language.types.string.html" class="type string">string</a>
+    </span>
+
+    <dd>
+
+     <p class="para">
+      Define the anonymous ftp password (your email address).
+     </p>
+    </dd>
+
+   </dt>
+
+
+   <dt id="ini.auto-detect-line-endings">
+    <span class="term">
+     <i><tt class="parameter">auto_detect_line_endings</tt></i>
+
+     <a href="language.types.boolean.html" class="type boolean">boolean</a>
+    </span>
+
+    <dd>
+
+     <p class="para">
+      When turned on, PHP will examine the data read by
+      <a href="function.fgets.html" class="function">fgets()</a> and <a href="function.file.html" class="function">file()</a> to see if it
+      is using Unix, MS-Dos or Macintosh line-ending conventions.
+     </p>
+     <p class="para">This enables PHP to interoperate with Macintosh systems,
+      but defaults to Off, as there is a very small performance penalty
+      when detecting the EOL conventions for the first line, and also
+      because people using carriage-returns as item separators under
+      Unix systems would experience non-backwards-compatible behaviour.
+     </p>
+     <blockquote><p><b class="note">Note</b>: 
+      <span class="simpara">
+       This configuration option was introduced in PHP 4.3.0
+      </span>
+     </p></blockquote>
+    </dd>
+
+   </dt>
+
+  </dl>
+
+ </p>
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="filesystem.installation.html">Installation</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="filesystem.resources.html">Resource Types</a></div>
+ <div class="up"><a href="filesystem.setup.html">Installing/Configuring</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

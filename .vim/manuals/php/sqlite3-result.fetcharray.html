@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Fetches a result row as an associative or numerically indexed array or both</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="sqlite3-result.columntype.html">SQLite3_result::columnType</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="sqlite3-result.finalize.html">SQLite3_result::finalize</a></div>
+ <div class="up"><a href="class.sqlite3-result.html">SQLite3_result</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="sqlite3-result.fetcharray" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SQLite3_result::fetchArray</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SQLite3_result::fetchArray</span> &mdash; <span class="dc-title">
+   Fetches a result row as an associative or numerically indexed array or both
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">array</span> <span class="methodname"><b><b>SQLite3_result::fetchArray</b></b></span>
+    ([ <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mode</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Fetches a result row as an associative or numerically indexed array or both.
+   By default, fetches as both.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Controls how the next row will be returned to the caller. This value
+       must be one of either <i>SQLITE3_ASSOC</i>,
+       <i>SQLITE3_NUM</i>, or <i>SQLITE3_BOTH</i>. It
+       defaults to <i>SQLITE3_BOTH</i>.
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <p class="para">
+          <i>SQLITE3_ASSOC</i>: returns an array indexed by column
+          name as returned in the corresponding result set
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          <i>SQLITE3_NUM</i>: returns an array indexed by column
+          number as returned in the corresponding result set, starting at
+          column 0
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          <i>SQLITE3_BOTH</i>: returns an array indexed by both
+          column name and number as returned in the corresponding result set,
+          starting at column 0
+         </p>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a result row as an associatively or numerically indexed array or
+   both.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>SQLite3_result::fetchArray()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;...&nbsp;*/<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+...
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="sqlite3-result.columntype.html">SQLite3_result::columnType</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="sqlite3-result.finalize.html">SQLite3_result::finalize</a></div>
+ <div class="up"><a href="class.sqlite3-result.html">SQLite3_result</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>
