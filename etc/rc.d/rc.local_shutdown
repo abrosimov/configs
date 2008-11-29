@@ -1,0 +1,5 @@
+
+# ClamAV, the open source anti-virus scanner
+test -x /etc/rc.d/rc.clamav && /etc/rc.d/rc.clamav stop
+killall -s SIGKILL mpdscribble
+mpd --kill

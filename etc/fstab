@@ -1,0 +1,10 @@
+/dev/sda6        /                reiserfs    defaults                                                    1 1
+/dev/sda1        /boot            reiserfs    defaults                                                    1 2
+/dev/sda5        /home            reiserfs    defaults                                                    1 2
+/dev/sda8        /mnt/user_space  reiserfs    defaults                                                    1 2
+/dev/cdrom       /mnt/cdrom       auto        auto,owner,users,ro                                         0 0
+#/dev/fd0        /mnt/floppy      auto        auto,owner                                                  0 0
+devpts           /dev/pts         devpts      gid=5,mode=620                                              0 0
+proc             /proc            proc        defaults                                                    0 0
+tmpfs            /dev/shm         tmpfs       defaults                                                    0 0
+/dev/sdb1        /mnt/flash       vfat        owner,iocharset=cp1251,codepage=1251,rw,umask=000,showexec,quiet,user,users   0 0

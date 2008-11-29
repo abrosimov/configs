@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# /etc/rc.d/rc.local:  Local system initialization script.
+#
+# Put any local startup commands in here.  Also, if you have
+# anything that needs to be run at shutdown time you can
+# make an /etc/rc.d/rc.local_shutdown script and put those
+# commands in there.
+echo "1024" > /proc/sys/dev/rtc/max-user-freq
+
+# ClamAV, the open source anti-virus scanner
+#test -x /etc/rc.d/rc.clamav && /etc/rc.d/rc.clamav start

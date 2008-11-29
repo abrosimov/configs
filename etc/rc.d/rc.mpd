@@ -1,0 +1,6 @@
+#!/bin/sh
+# Starting mpd & mpdscribble
+if [ -x /usr/local/bin/mpd ]; then
+    echo "Starting MPD... /usr/local/bin/mpd"
+    /usr/local/bin/mpd /home/fally/.mpdconf 
+fi
